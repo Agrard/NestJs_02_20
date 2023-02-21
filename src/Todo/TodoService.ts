@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { NotFoundException } from '@nestjs/common/exceptions';
+import { NotFoundError } from 'rxjs';
 import { todos } from './todos';
 
 
@@ -6,5 +8,13 @@ import { todos } from './todos';
 export class TodoService {
   getTodos(): object {
     return todos
+  }
+
+  getTodoID(id: string) {
+    throw new NotFoundException();
+    return {
+      id: id,
+      name: `Todo #${id}`
+    };
   }
 }

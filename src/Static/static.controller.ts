@@ -15,7 +15,7 @@ export class StaticController {
    // Ez az egyszerűbb (nestJs féle)
    
   // @Get('/')
-  // getHello(@Req() request: Request): any {
+  // getHeader(@Req() request: Request): any {
   //   return request.headers; 
   // }
 
@@ -47,20 +47,6 @@ export class StaticController {
     getTest(@Res() response: Response) {
     response.redirect('/')
     }
-
-    // 4. /todos/id amilyen id-t lekérünk azt vissza adja
-
-    @Get('/todos/:id')
-    getId(@Param() params): string {
-      console.log(params.id);
-      return `Todos ID: #${params.id}`;
-    }
-
-
-    
-
-  
-
 
 }
 
