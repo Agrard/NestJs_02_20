@@ -6,12 +6,12 @@ import { todos } from './todos';
 
 @Injectable()
 export class TodoService {
-  getTodos(): object {
-    return todos
+  getTodos(limit:number, offset: number) {
+    return todos.slice(offset,offset + limit)
   }
 
   getTodoID(id: string) {
-    throw new NotFoundException();
+    // throw new NotFoundException();
     return {
       id: id,
       name: `Todo #${id}`

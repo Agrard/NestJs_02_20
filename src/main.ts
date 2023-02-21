@@ -1,11 +1,13 @@
 import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 import { StaticModule } from './Static/static.module';
-import { TodoService } from './Todo/TodoService';
+import { TodoModule } from './Todo/TodoModule';
+
 
 
 
 async function bootstrap() {
-  const app = await NestFactory.create(TodoService);
+  const app = await NestFactory.create(TodoModule);
   await app.listen(3000);
 }
 bootstrap();

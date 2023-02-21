@@ -2,16 +2,31 @@ import { Controller, Get, Header, Param, Post, Query, Redirect, Req, Res, } from
 import { BadRequestException } from '@nestjs/common/exceptions';
 import { Response, Request, response } from 'express';
 import { request } from 'http';
+import TodoListParam from 'src/Validator/ValidatorPipe';
 import { TodoService } from './TodoService';
-
 
 @Controller()
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
-  @Get('/todos')
-  getTodos(): object {
-    return this.todoService.getTodos();
+  @Get('')
+  getTodos(@Query() param: TodoListParam, @Req() request: Request): object {
+    const limitNumber = Number(param.limit);
+    if (Number.isNaN(limitNumber)) {
+      response.status(400)
+      response.send(JSON.stringify({}))
+      
+      throw new BadRequestException();
+    }
+
+    const offsetNumber = Number(param.offset);
+    if (Number.isNaN(offsetNumber)) {
+      response.status(400)
+      response.send(JSON.stringify({}))
+      
+      throw new BadRequestException();
+    }
+    return this.todoService.getTodos(limitNumber,offsetNumber);
   }
 
   // 4. /todos/id amilyen id-t lekérünk azt vissza adja
@@ -27,17 +42,7 @@ export class TodoController {
     return this.todoService.getTodoID(params);
   }
 
-  @Get('')
-  getTodoID2(@Param() params, @Query('limit') limit: string, @Query('offset',) offset: string, @Req() request: Request): object {
-    const limitNumber = Number(limit);
-    if (Number.isNaN(limitNumber)) {
-      response.status(400)
-      response.send(JSON.stringify({}))
-      
-      throw new BadRequestException();
-    }
-    return this.todoService.getTodoID(params);
-  }
+  
 
 
 }
