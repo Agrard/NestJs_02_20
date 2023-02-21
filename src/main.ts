@@ -4,10 +4,8 @@ import { StaticModule } from './Static/static.module';
 import { TodoModule } from './Todo/TodoModule';
 
 
-
-
 async function bootstrap() {
-  const app = await NestFactory.create(TodoModule);
+  const app = await NestFactory.create(AppModule);
   await app.listen(3000);
 }
 bootstrap();

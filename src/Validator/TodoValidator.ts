@@ -7,6 +7,4 @@ import { IsEmail, IsNotEmpty } from 'class-validator/types/decorator/decorators'
 
     @IsNotEmpty()
     password: string;
-
-
   }
