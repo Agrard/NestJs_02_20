@@ -2,7 +2,7 @@ import { Controller, Get, Header, Param, Post, Query, Redirect, Req, Res, } from
 import { BadRequestException } from '@nestjs/common/exceptions';
 import { Response, Request, response } from 'express';
 import { request } from 'http';
-import TodoListParam from 'src/Validator/ValidatorPipe';
+import TodoListParam from './TodoListParam';
 import { TodoService } from './TodoService';
 
 @Controller()
