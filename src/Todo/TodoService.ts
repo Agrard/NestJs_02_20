@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { NotFoundException } from '@nestjs/common/exceptions';
 import { NotFoundError } from 'rxjs';
+import TodoDTO from './TodoDTO';
 import { todos } from './todos';
 
 

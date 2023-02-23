@@ -1,9 +1,14 @@
-import { Controller, Get, Header, Param, Post, Query, Redirect, Req, Res, } from '@nestjs/common';
+import { Body, Controller, Get, Header, Param, Post, Put, Query, Redirect, Req, Res, } from '@nestjs/common';
 import { BadRequestException } from '@nestjs/common/exceptions';
 import { Response, Request, response } from 'express';
 import { request } from 'http';
+import TodoDTO from './TodoDTO';
+
 import TodoListParam from './TodoListParam';
+import { todos } from './todos';
 import { TodoService } from './TodoService';
+
+let todosData = todos;
 
 @Controller()
 export class TodoController {
@@ -40,6 +45,23 @@ export class TodoController {
   @Get('/todos/:id')
   getTodoID(@Param() params): object {
     return this.todoService.getTodoID(params);
+  }
+
+
+  @Get('todo/dto')
+  getTodosDTO(): TodoDTO[] {
+   return todosData;
+  }
+
+  @Post('POST/todo/:id')
+  CreateTodo(@Body() createTodo: TodoDTO): TodoDTO{
+    const newTodo: TodoDTO = {
+      id: (todosData.length + 1).toString(),
+      ...createTodo
+    }
+    todosData = [...todosData, newTodo];
+
+    return newTodo;
   }
 
   
