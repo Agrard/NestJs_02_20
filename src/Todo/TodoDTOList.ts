@@ -1,6 +1,6 @@
 import TodoDTO from "./TodoDTO"
 
-export const todos: TodoDTO[] = [
+export const todosDTO: TodoDTO[] = [
 {
 id: '1',
 title: 'Generate apps',
