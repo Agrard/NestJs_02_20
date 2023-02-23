@@ -1,52 +1,14 @@
-import { Controller, Get, Header, Param, Post, Redirect, Req, Res, } from '@nestjs/common';
-import { Response, Request, response } from 'express';
-import { request } from 'http';
+import { Controller, Get, Header, Redirect, Req, Res } from "@nestjs/common";
 import { StaticService } from './static.service';
-
-
+import { Request, Response } from 'express';
 
 @Controller()
 export class StaticController {
   constructor(private readonly staticService: StaticService) {}
 
-   // 1. Header visszaadása JSON body-ban
-  
-
-   // Ez az egyszerűbb (nestJs féle)
-   
-  // @Get('/')
-  // getHeader(@Req() request: Request): any {
-  //   return request.headers; 
-  // }
-
-    //Másik megoldás (expresses)
-     @Get('/')
-     getHeader(@Req() request: Request, @Res() response: Response): any {
-       response.send(JSON.stringify(request.headers))
-     }
-
-   // 2. X-APPLICATON respone headert küldjünk vissza
-
-  //  @Get('/')
-  //  @Header('Cache-Control', 'none')
-  //  getHello2(@Req() request: Request, @Res() response: Response): any {
-  //    response.send(JSON.stringify(request.headers))
-  //  }
-
-    @Get('/manual')
-    getHello(@Req() request: Request, @Res() response: Response) {
-      response.header('x-application', 'my-app')
-      response.header('content-type', 'application/json')
-      response.send(JSON.stringify(request.headers))
-    }
-
-    // 3. /test redirect-eljen a / <-- utvonalra
-
-
-    @Get('/test')
-    getTest(@Res() response: Response) {
-    response.redirect('/')
-    }
-
+  @Get('/')
+  @Header('x-application', 'my-app')
+  getHello1(@Req() request: Request) {
+    return request.headers;
+  }
 }
-

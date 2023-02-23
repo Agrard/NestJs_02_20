@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { StaticModule } from './Static/static.module';
-import { TodoModule } from './Todo/TodoModule';
+import { Module } from "@nestjs/common";
+import { TodoModule } from "./todo/todo.module";
+import { StaticModule } from "./static/static.module";
 
 @Module({
-  imports: [TodoModule,StaticModule],
+  imports: [TodoModule, StaticModule],
   controllers: [],
   providers: [],
 })
