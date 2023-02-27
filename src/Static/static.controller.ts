@@ -1,4 +1,4 @@
-import { Controller, Get, Header, Redirect, Req, Res } from "@nestjs/common";
+import { Controller, Get, Header, Redirect, Render, Req, Res } from "@nestjs/common";
 import { StaticService } from './static.service';
 import { Request, Response } from 'express';
 
@@ -11,4 +11,6 @@ export class StaticController {
   getHello1(@Req() request: Request) {
     return request.headers;
   }
+
+ 
 }

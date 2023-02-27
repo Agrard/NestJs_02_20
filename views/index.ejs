@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>App</title>
+  </head>
+  <body>
+   
+    <form method="post" action="/todos">
+      <input type="text" name="name">
+      <input type="submit">
+    </form>
+    <ul>      
+      <% for(const todo of todos){ %> 
+        <form method="post" action="/todos/delete/<%= todo.id%>">
+      <li> <%= todo.name%> <input type="submit" value="X" name="name"></li>
+      </form>
+   
+
+      <% } %>
+      <!-- vagy
+        <% todos.forEach(todo => { %>
+          <li><%= todo.name %></li>
+          <% }); %> -->
+        </ul>
+  </body>
+</html>

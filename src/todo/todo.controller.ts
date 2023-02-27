@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, Render } from "@nestjs/common";
 import { TodoService } from './todo.service';
 import { IsInt, IsString } from "class-validator";
 import { Type } from 'class-transformer';
@@ -6,7 +6,7 @@ import { TodoListParams } from "./TodoListParams";
 import { CreateOrUpdateTodoDto } from "./create-todo.dto";
 
 
-@Controller('/todos')
+@Controller('/api/todos')
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 

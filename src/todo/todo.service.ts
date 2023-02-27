@@ -9,11 +9,11 @@ export interface Todo {
 let nextId = 1;
 
 const todos: Todo[] = [
-  { id: nextId++, name: 'Zoli' },
-  { id: nextId++, name: 'Zoli' },
-  { id: nextId++, name: 'Zoli' },
-  { id: nextId++, name: 'Zoli' },
-  { id: nextId++, name: 'Zoli' },
+  { id: nextId++, name: 'Zoli1' },
+  { id: nextId++, name: 'Zoli2' },
+  { id: nextId++, name: 'Zoli3' },
+  { id: nextId++, name: 'Zoli4' },
+  { id: nextId++, name: 'Zoli5' },
 ];
 
 @Injectable()
