@@ -52,10 +52,7 @@ export class TodoService {
   }
 
   updateTodo(id: number, todoDto: CreateOrUpdateTodoDto) {
-    const todo = todos.map((item) => item.id === id)
-    if (!todo) {
-      throw new NotFoundException
-    }
-    return todo
+    const todo = this.getTodo(id)
+    Object.assign(todo, todoDto);
   }
 }
