@@ -17,6 +17,43 @@
         <input type="password" name="password">
         <br><br>
         <button type="submit">Bejelentkezés</button>
-    </form>      
+    </form> 
+    
+    <script>
+      async function login(body) {
+        const res = await fetch('/login', {
+          method: 'post',
+          body,
+        });
+        if (res.status === 401) {
+          alert('Hibás adatok!');
+          return;
+        }
+        const data = await res.json();
+        console.log(data.access_token);
+
+      const profile = await fetch('/profile', {
+        headers: {
+          Autohorization: `Bearer ${data.access_token}`
+        }
+      })
+        alert(profile.points)
+      }
+      
+    
+      const form = document.querySelector('form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+    
+        const data = new URLSearchParams();
+        for (const pair of new FormData(form)) {
+          data.append(pair[0], pair[1]);
+        }
+    
+        login(data);
+      });
+
+     
+    </script>
   </body>
 </html>
