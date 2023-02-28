@@ -10,14 +10,7 @@ import { CreateOrUpdateTodoDto } from "./create-todo.dto";
 export class TodoMvcController {
     constructor(private readonly todoService: TodoService) { }
 
-    @Get('')
-    @Render('index.ejs')
-    public index() {
-        const todos = this.todoService.getTodos(10, 0)
-        return { todos };
-    }
-
-    @Get(':id')
+    @Get('edit/:id')
     @Render('todo.ejs')
     public index2(@Param('id') id: string) {
         const todoId = this.todoService.getTodo(Number(id));
@@ -42,5 +35,19 @@ export class TodoMvcController {
     private listTodos(message: string | null) {
         const todos = this.todoService.getTodos(10,0)
         return{todos, message}
+    }
+
+    @Get('')
+    @Render('index.ejs')
+    public index() {
+        const todos = this.todoService.getTodos(10, 0)
+        return { todos };
+    }
+
+    @Post('/edit/:id')
+    @Render('todo.ejs')
+    public updateTodo(@Param('id') id: string, @Body() todo: CreateOrUpdateTodoDto) {
+        const updateTodo = this.todoService.updateTodo(Number(id), todo) 
+        return{todoId:updateTodo}  
     }
 }

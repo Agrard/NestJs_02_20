@@ -5,6 +5,14 @@
     <title>App</title>
   </head>
   <body>
+    <a href="/todos">Vissza</a>
+    <br>
     <%= todoId.name%>
+
+    <form method="post" action="/todos/edit/<%=todoId.id%>">
+      <input type="text" name="name">
+      <button type="submit">Mentés</button>
+
+    </form>
   </body>
 </html>

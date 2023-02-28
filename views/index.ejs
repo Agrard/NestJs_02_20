@@ -7,16 +7,15 @@
   <body>
    
     <form method="post" action="/todos">
+      <label>Név: </label>
       <input type="text" name="name">
-      <input type="submit">
+      <button type="submit">Hozzáad</button>
     </form>
     <ul>      
       <% for(const todo of todos){ %> 
         <form method="post" action="/todos/delete/<%= todo.id%>">
-      <li> <%= todo.name%> <input type="submit" value="X" name="name"></li>
+      <li> <a href="/todos/edit/<%=todo.id%>"><%=todo.name%></a> <input type="submit" value="X" name="name"></li>
       </form>
-   
-
       <% } %>
       <!-- vagy
         <% todos.forEach(todo => { %>

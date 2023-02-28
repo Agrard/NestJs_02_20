@@ -54,5 +54,6 @@ export class TodoService {
   updateTodo(id: number, todoDto: CreateOrUpdateTodoDto) {
     const todo = this.getTodo(id)
     Object.assign(todo, todoDto);
+    return todo;
   }
 }
