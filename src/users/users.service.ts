@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 export interface BaseUser{
+    id: string;
     username: string;
 }
 export interface User extends BaseUser{
@@ -12,10 +13,12 @@ export class UsersService {
 
     private readonly users: User[] = [
         {
+            id: "u1",
             username: "Gabor",
             password: 'password'
         },
         {
+            id: "u2",
             username: "Tamás",
             password: 'password2'
         }
