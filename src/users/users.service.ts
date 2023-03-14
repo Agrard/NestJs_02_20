@@ -3,6 +3,9 @@ import { Injectable } from '@nestjs/common';
 export interface BaseUser{
     id: string;
     username: string;
+    profile:  {
+        points: number;
+    }
 }
 export interface User extends BaseUser{
     password: string;
@@ -15,15 +18,21 @@ export class UsersService {
         {
             id: "u1",
             username: "Gabor",
-            password: 'password'
+            password: 'password',
+            profile: {
+                points: 4
+            }
         },
-        {
-            id: "u2",
-            username: "Tamás",
-            password: 'password2'
-        }
+        // {
+        //     id: "u2",
+        //     username: "Tamás",
+        //     password: 'password2',
+        //     profile: {
+        //         points: 10
+        //     }
+        // }
     ];
-  findOne(username: string): User | undefined {
+  async findOne(username: string): Promise<User | undefined> {
     return this.users.find(user => user.username === username);
   }
 }

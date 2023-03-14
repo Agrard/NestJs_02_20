@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
+import { User } from './user.entity';
 
 @Entity()
 export class Todo {
@@ -6,11 +7,8 @@ export class Todo {
     id: number;
 
     @Column()
-    firstName: string;
+    name: string;
 
-    @Column()
-    lastName: string;
-
-    @Column({ default: true })
-    isActive: boolean;
+    @ManyToOne(() => User, (user) => user.todos)
+    users: User[];
 }

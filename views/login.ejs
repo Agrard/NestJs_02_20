@@ -32,11 +32,12 @@
         const data = await res.json();
         console.log(data.access_token);
 
-      const profile = await fetch('/profile', {
+      const profileResponse = await fetch('/profile', {
         headers: {
-          Autohorization: `Bearer ${data.access_token}`
+          Authorization: `Bearer ${data.access_token}`
         }
       })
+        const profile = await profileResponse.json();
         alert(profile.points)
       }
       
